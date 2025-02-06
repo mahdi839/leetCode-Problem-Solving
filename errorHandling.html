@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error Handling</title>
+  </head>
+  <body>
+
+    <div class="box">
+      <h2>Axios Example</h2>
+      <button onclick="fetchWithAxios()">Fetch Post with Axios</button>
+    </div>
+
+    <div id="container">
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        
+     
+       async function fetchWithAxios (){
+          try{
+            const container = document.getElementById('container')
+            container.innerHTML = ""
+           
+              const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+              response.data.forEach((post)=>{
+                let postDiv = document.createElement("div")
+                postDiv.innerHTML = `
+                <p>${post.id}</p>
+                 <p>${post.title}</p>
+                 <p>${post.body}</p>
+                `;
+                container.appendChild(postDiv)
+              })
+              
+          }catch(err){
+             console.log(err.message)
+          }
+         
+       }
+
+    </script>
+  </body>
+</html>
