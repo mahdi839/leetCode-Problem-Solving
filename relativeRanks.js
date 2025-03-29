@@ -1,21 +1,17 @@
 var findRelativeRanks = function(score) {
-    let sortedScore = score.sort((a,b) => b -a )
-   
-    for(let i = 0; i<sortedScore.length;i++){
-             if(sortedScore[i]==sortedScore[0]){
-                 sortedScore[0] = "Gold Medal"
-             }else if(sortedScore[i]==sortedScore[1]){
-                 sortedScore[1] = "Silver Medal"
-             }else if(sortedScore[i]==sortedScore[2]){
-                sortedScore[2] = "Bronze Medal"
-            }else{
-                let convertStr = i+1;
-                sortedScore[i]= convertStr.toString()
-            }
-    }
-    return sortedScore;
+   let sortedArr = [...score].sort((a,b)=> b-a)
+   let sortedObj = {}
+   sortedArr.forEach((val,index)=>{
+       if(index == 0) sortedObj[val] = 'gold medal';
+       else if(index == 1) sortedObj[val] = 'silver medal';
+       else if(index == 2) sortedObj[val] = 'bronze medal';
+       else sortedObj[val] = (index + 1).toString()
+   }) 
+
+   let result = score.map((val)=> sortedObj[val])
+   return result;
 };
 
 
-let score = [5,4,3,2,1]
+let score = [5,3,2,1,4]
 console.log(findRelativeRanks(score))
