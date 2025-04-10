@@ -19,6 +19,6 @@ var searchInsert = function(nums, target) {
 };
 
 let nums = [1,3,5,6]
-let target = 2
+let target = 7
 
 console.log(searchInsert(nums,target))
