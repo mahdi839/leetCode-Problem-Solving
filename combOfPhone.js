@@ -28,7 +28,6 @@ function combOfPhone(digits) {
     for(let i=0;i<first.length;i++){
         for(let j=0;j<second.length;j++){
             resultArr.push(first[i]+second[j]) 
-            
         }
     }
      
@@ -38,5 +37,5 @@ function combOfPhone(digits) {
 
   return resultArr;
 }
-const digits = "";
+const digits = "234";
 console.log(combOfPhone(digits));
