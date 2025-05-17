@@ -20,16 +20,16 @@ function combOfPhone(digits) {
     return [];
   }
 
- 
+//  console.log("letters" +" " + letters.join("").slice(letters[0].length))
   if(letters.length>1){
-     let first = letters[0]
-     let second = letters[1]
-      
-    for(let i=0;i<first.length;i++){
-        for(let j=0;j<second.length;j++){
-            resultArr.push(first[i]+second[j]) 
-        }
+     let first = letters[0] 
+     let restOfDigit = letters.join("").slice(letters[0].length)
+    
+   for(let j =0;j<first.length;j++){
+    for(let i=0;i<restOfDigit.length;i++){
+       resultArr.push(first[j]+restOfDigit[i])
     }
+   }
      
   }else{
     return letters.join("").split("")
