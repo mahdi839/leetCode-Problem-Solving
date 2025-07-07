@@ -1,25 +1,30 @@
-function getResult (s){
-    let subStrings = [];
-    let palindroms = [];
+function getResult(s) {
+    if (s.length === 0) return "";
+    let start = 0;
+    let maxLength = 1;
 
-    for(let start=0;start<s.length;start++){
-         for(let end=start+1;end<=s.length;end++){
-            subStrings.push(s.slice(start,end))
-         }
-    }
-    for(let i=0;i<subStrings.length;i++){
-        let check = subStrings[i].split("").reverse().join("")
-        if(check === subStrings[i]){
-            palindroms.push(subStrings[i].split("").reverse().join(""))
+    const expandAroundCenter = (left, right) => {
+        while (left >= 0 && right < s.length && s[left] === s[right]) {
+           
+            left--;
+            right++;
+        }
+        return right - left - 1;
+    };
+
+    for (let i = 0; i < s.length; i++) {
+  
+        let len1 = expandAroundCenter(i, i);
+        let len2 = expandAroundCenter(i, i + 1);
+       
+        let len = Math.max(len1, len2);
+        if (len > maxLength) {
+            maxLength = len;
+            start = i - Math.floor((len - 1) / 2);
         }
     }
-   let longestPal = palindroms[0]
-   for(let l =0;l<palindroms.length;l++){
-      if(palindroms[l].length > longestPal.length ){
-        longestPal = palindroms[l]
-      }
-   }
-   return longestPal;
+    return s.substring(start, start + maxLength);
 }
+
 let s = "babad";
-console.log(getResult(s))
+console.log(getResult(s));
