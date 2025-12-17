@@ -1,0 +1,33 @@
+var wordPattern = function(pattern, s) {
+    const words = s.split(" ");
+    
+    if (pattern.length !== words.length) return false;
+
+    const charToWord = {};
+    const wordToChar = {};
+
+    for (let i = 0; i < pattern.length; i++) {
+        const ch = pattern[i];
+        const word = words[i];
+        if(charToWord[ch]){
+            return charToWord[ch]
+        }
+        // check letter → word
+        if (charToWord[ch] && charToWord[ch] !== word) {
+            return false;
+        }
+
+        // check word → letter
+        if (wordToChar[word] && wordToChar[word] !== ch) {
+            return false;
+        }
+
+        charToWord[ch] = word;
+        wordToChar[word] = ch;
+    }
+
+    return true;
+};
+let pattern = "ab"
+let s = "dog dog"
+console.log(wordPattern(pattern,s))
