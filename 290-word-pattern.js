@@ -9,9 +9,7 @@ var wordPattern = function(pattern, s) {
     for (let i = 0; i < pattern.length; i++) {
         const ch = pattern[i];
         const word = words[i];
-        if(charToWord[ch]){
-            return charToWord[ch]
-        }
+      
         // check letter → word
         if (charToWord[ch] && charToWord[ch] !== word) {
             return false;
